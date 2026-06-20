@@ -24,15 +24,13 @@ A web-based Delhi Metro Route Planner built using Python and Flask.
 
 ## Project Structure
 
-## Project Structure
-
 ```text
 METRO_PROJECT/
 │
 ├── app.py
 ├── metro_data.py
 ├── lines.json
-├── Readme.md
+├── README.md
 │
 ├── templates/
 │   └── index.html

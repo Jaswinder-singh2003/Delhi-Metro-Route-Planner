@@ -66,6 +66,20 @@ http://127.0.0.1:5000
 - Better fare calculation
 - Improved route optimization
 
+## Screenshots
+
+### Home Page
+
+![Home Page](screenshots/homepage.png)
+
+### Route Summary
+
+![Route Summary](screenshots/route-summary.png)
+
+### Route with Interchange
+
+![Interchange Route](screenshots/interchange-route.png)
+
 ## Author
 
 Jaswinder Singh  

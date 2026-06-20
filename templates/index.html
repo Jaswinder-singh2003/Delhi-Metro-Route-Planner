@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Metro Route Finder</title>
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+    
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h1>🚇 Delhi Metro Route Planner</h1>
+        <p>Find the fastest metro route across Delhi NCR</p>
+    </div>
+
+    <form method="POST">
+        <label>From Station</label>
+        <select name="source">
+            <option value="">Select Station</option>
+            {% for s in stations %}
+            <option value="{{s}}"
+            {% if s == source_station %}selected{% endif %}>
+            {{s}}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>To Station</label>
+        <select name="destination">
+            <option value="">Select Station</option>
+            {% for s in stations %}
+            <option value="{{s}}"
+            {% if s == destination_station %}selected{% endif %}>
+            {{s}}
+            </option>
+            {% endfor %}
+        </select>
+            <button type="submit">Find Route</button>
+
+    </form>
+
+    <div class="result-card">
+
+        <h3>Route Details:</h3>
+            {% if error %}
+        <p class="error-message">{{ error }}</p>
+
+        {% elif route %}
+
+        <div class="route-summary">
+        <h4>{{ source_station }} → {{ destination_station }}</h4>
+        <p>
+        {{ stops }} Stations •
+        {{ interchange_count }} Interchange •
+        ₹{{ fare }} •
+        {{ travel_time }} min
+            </p>
+            </div>
+
+        <div class="route-list">
+
+         {% for station in route %}
+            {% if station.is_change %}
+            <div class="change-card">
+                {{ station.name }}
+            </div>
+            {% else %}
+
+            <div class="station-item"
+             style="border-left: 4px solid {{ station.color }};">
+                {{ station.name }}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>Select source and destination to view route.</p>
+        {% endif %}
+        
+</div>
+
+</body>
+</html>
